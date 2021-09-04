@@ -15,6 +15,9 @@ const Controls = () => {
   return (
     <orbitControls
       autoRotate
+      //both together limit control movement to rotate about z-axis
+      maxPolarAngle={Math.PI / 3} // handles forward tilt?
+      minPolarAngle={Math.PI / 3} // handles backwards tilt?
       args={[
         camera, gl.domElement
       ]}
