@@ -28,15 +28,19 @@ const Box = () => {
       onClick={handleClick}
       scale={props.scale}
     >
-        <boxBufferGeometry
-          attach="geometry"
-          args={[1, 1, 1]}
-        />
-        <a.meshBasicMaterial
-          attach="material"
-          color={props.color}
-        />
-      </a.mesh>
+      <ambientLight/>
+      <spotLight
+        position={[0,5,10]}
+      />
+      <boxBufferGeometry
+        attach="geometry"
+        args={[1, 1, 1]}
+      />
+      <a.meshPhysicalMaterial
+        attach="material"
+        color={props.color}
+      />
+    </a.mesh>
   )
 }
 
