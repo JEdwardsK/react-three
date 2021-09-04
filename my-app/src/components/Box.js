@@ -1,31 +1,42 @@
-import React, { useState } from 'react'
-import {useSpring, a} from 'react-spring/three'
+import React, { /*useRef,*/ useState } from 'react'
+import {useSpring, a} from '@react-spring/three'
+import { extend } from '@react-three/fiber'
 const Box = () => {
   const [hover, setHover] = useState(false)
   const [active, setActive] = useState(false)
   // react spring can take static elements
-  const props = useSpring({})
+  const props = useSpring({
+    scale: active ? [2,2,2] : [1,1,1],
+    color: hover ? "red" : "grey"
+
+  })
+  // const meshRef = useRef()
+  // useFrame(() => {
+  //   meshRef.current.rotation.y += .01
+  //   meshRef.current.rotation.z += .01
+  // })
 
 
   const handlePointer = () => setHover(!hover)
   const handleClick = () => setActive(!active)
 
   return (
-    <mesh
+    <a.mesh
+      // ref={meshRef}
       onPointerOver={handlePointer}
       onPointerOut={handlePointer}
       onClick={handleClick}
-      scale={active ? [2,2,2] : [1,1,1]}
+      scale={props.scale}
     >
         <boxBufferGeometry
           attach="geometry"
           args={[1, 1, 1]}
         />
-        <meshBasicMaterial
+        <a.meshBasicMaterial
           attach="material"
-          color={hover ? "red" : "grey"}
+          color={props.color}
         />
-      </mesh>
+      </a.mesh>
   )
 }
 
