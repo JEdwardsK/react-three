@@ -7,7 +7,13 @@ const App = () => {
 
   
   return (
-    <Canvas>
+    <Canvas
+      camera={{position: [0, 0, 5]}}
+    >
+      <fog 
+        attach="fog"
+        args={["white", 5, 15]}
+        />
       <Controls/>
       <Box/>
       <Plane/>
